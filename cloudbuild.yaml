@@ -18,7 +18,7 @@ steps:
       - |
         buildNumber=$(cat _BUILDNUMBER)
         echo "Build Number is ${buildNumber}"
-        cloudbuild/streaming/submit.sh DataflowDemoPipeline \
+        ./streaming/submit.sh DataflowDemoPipeline \
           --project=tiger-mle \
           --stagingLocation=gs://beampipeline/staging/ \
           --gcpTempLocation=gs://beampipeline/temp/ \
