@@ -27,6 +27,5 @@ steps:
           --maxNumWorkers=10 \
           --jobName=demo \
           --buildNumber=${buildNumber} \
-          --subscription=dataflow_demo_subscription \
           --region=us-east1
     waitFor: ['get build number']
