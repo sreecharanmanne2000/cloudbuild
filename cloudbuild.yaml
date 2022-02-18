@@ -13,7 +13,7 @@ steps:
     name: maven:3.6.0-jdk-11-slim
     dir: 'cloudbuild-dataflow-demo/streaming'
     entrypoint: 'bash'
-    args: ['-m', 'main',
+    args: ['-c','submit.sh DataflowDemoPipeline',
           "--project=tiger-mle",
           "--stagingLocation=gs://beampipeline/staging/",
           "--gcpTempLocation=gs://beampipeline/temp/",
