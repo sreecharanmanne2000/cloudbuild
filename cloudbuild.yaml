@@ -13,15 +13,20 @@ steps:
     name: maven:3.6.0-jdk-11-slim
     dir: 'cloudbuild-dataflow-demo/streaming'
     entrypoint: 'bash'
-    args: ['-c','./submit.sh DataflowDemoPipeline',
-          "--project=tiger-mle",
-          "--stagingLocation=gs://beampipeline/staging/",
-          "--gcpTempLocation=gs://beampipeline/temp/",
-          "--runner=DataflowRunner",
-          "--autoscalingAlgorithm=THROUGHPUT_BASED",
-          "--maxNumWorkers=10",
-          "--jobName=demo",
-          "--buildNumber=${buildNumber}",
-          "--region=us-east1"
-          ]
+    args:
+      - '-c'
+      - |
+        buildNumber=$(cat _BUILDNUMBER)
+        echo "Build Number is ${buildNumber}"
+        ./submit.sh DataflowDemoPipeline \
+          --project=zhong-gcp \
+          --stagingLocation=gs://zhong-gcp/stage/ \
+          --gcpTempLocation=gs://zhong-gcp/temp/ \
+          --runner=DataflowRunner \
+          --autoscalingAlgorithm=THROUGHPUT_BASED \
+          --maxNumWorkers=10 \
+          --jobName=demo \
+          --buildNumber=${buildNumber} \
+          --subscription=dataflow_demo_subscription \
+          --region=us-west1
     waitFor: ['get build number']
