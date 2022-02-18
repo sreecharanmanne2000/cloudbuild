@@ -18,6 +18,7 @@ steps:
       - |
         buildNumber=$(cat _BUILDNUMBER)
         echo "Build Number is ${buildNumber}"
+        echo ls -a
         ./submit.sh DataflowDemoPipeline \
           --project=tiger-mle \
           --stagingLocation=gs://beampipeline/staging \
